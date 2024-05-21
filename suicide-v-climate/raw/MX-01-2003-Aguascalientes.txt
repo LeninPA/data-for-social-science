@@ -1,0 +1,64 @@
+Defunciones registradas (mortalidad general)
+	Año de ocurrencia : 2003
+	Año de registro : 2003
+	
+
+Consulta de: Defunciones generales   Por: Ent y mun de registro y Edad   Según: Sexo y Causas detalladas CIE
+ 	 	 	 Total	 Hombre	 Mujer
+ 	 	 	 Lesiones autoinfligidas intencionalmente (X60-X84)	 Lesiones autoinfligidas intencionalmente (X60-X84)	 Lesiones autoinfligidas intencionalmente (X60-X84)
+ 01	 Aguascalientes	 Total	 63	 52	 11
+ 01	 Aguascalientes	 10-14 años	 1	 1	 
+ 01	 Aguascalientes	 15-19 años	 11	 9	 2
+ 01	 Aguascalientes	 20-24 años	 11	 11	 
+ 01	 Aguascalientes	 25-29 años	 10	 8	 2
+ 01	 Aguascalientes	 30-34 años	 5	 4	 1
+ 01	 Aguascalientes	 35-39 años	 6	 3	 3
+ 01	 Aguascalientes	 40-44 años	 1	 1	 
+ 01	 Aguascalientes	 45-49 años	 2	 2	 
+ 01	 Aguascalientes	 50-54 años	 3	 2	 1
+ 01	 Aguascalientes	 55-59 años	 2	 2	 
+ 01	 Aguascalientes	 60-64 años	 1	 1	 
+ 01	 Aguascalientes	 65-69 años	 2	 2	 
+ 01	 Aguascalientes	 70-74 años	 4	 3	 1
+ 01	 Aguascalientes	 75-79 años	 1	 1	 
+ 01	 Aguascalientes	 85 años y más	 2	 1	 1
+ 01	 Aguascalientes	 No especificado	 1	 1	 
+ 01 001	 Aguascalientes	 Total	 45	 34	 11
+ 01 001	 Aguascalientes	 15-19 años	 8	 6	 2
+ 01 001	 Aguascalientes	 20-24 años	 8	 8	 
+ 01 001	 Aguascalientes	 25-29 años	 8	 6	 2
+ 01 001	 Aguascalientes	 30-34 años	 1	 	 1
+ 01 001	 Aguascalientes	 35-39 años	 6	 3	 3
+ 01 001	 Aguascalientes	 40-44 años	 1	 1	 
+ 01 001	 Aguascalientes	 45-49 años	 2	 2	 
+ 01 001	 Aguascalientes	 50-54 años	 2	 1	 1
+ 01 001	 Aguascalientes	 55-59 años	 1	 1	 
+ 01 001	 Aguascalientes	 65-69 años	 2	 2	 
+ 01 001	 Aguascalientes	 70-74 años	 3	 2	 1
+ 01 001	 Aguascalientes	 85 años y más	 2	 1	 1
+ 01 001	 Aguascalientes	 No especificado	 1	 1	 
+ 01 003	 Calvillo	 Total	 2	 2	 
+ 01 003	 Calvillo	 10-14 años	 1	 1	 
+ 01 003	 Calvillo	 15-19 años	 1	 1	 
+ 01 004	 Cosío	 Total	 2	 2	 
+ 01 004	 Cosío	 20-24 años	 1	 1	 
+ 01 004	 Cosío	 60-64 años	 1	 1	 
+ 01 005	 Jesús María	 Total	 4	 4	 
+ 01 005	 Jesús María	 25-29 años	 1	 1	 
+ 01 005	 Jesús María	 30-34 años	 1	 1	 
+ 01 005	 Jesús María	 70-74 años	 1	 1	 
+ 01 005	 Jesús María	 75-79 años	 1	 1	 
+ 01 006	 Pabellón de Arteaga	 Total	 2	 2	 
+ 01 006	 Pabellón de Arteaga	 25-29 años	 1	 1	 
+ 01 006	 Pabellón de Arteaga	 55-59 años	 1	 1	 
+ 01 007	 Rincón de Romos	 Total	 7	 7	 
+ 01 007	 Rincón de Romos	 15-19 años	 2	 2	 
+ 01 007	 Rincón de Romos	 20-24 años	 2	 2	 
+ 01 007	 Rincón de Romos	 30-34 años	 2	 2	 
+ 01 007	 Rincón de Romos	 50-54 años	 1	 1	 
+ 01 011	 San Francisco de los Romo	 Total	 1	 1	 
+ 01 011	 San Francisco de los Romo	 30-34 años	 1	 1	 
+
+
+FUENTE: INEGI. Estadísticas de mortalidad.
+

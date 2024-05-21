@@ -1,0 +1,85 @@
+"Notes"	"County"	"County Code"	"Five-Year Age Groups"	"Five-Year Age Groups Code"	"Year"	"Year Code"	"Gender"	"Gender Code"	Deaths	Population	Crude Rate	% of Total Deaths
+	"Baldwin County, AL"	"01003"	"20-24 years"	"20-24"	"2015"	"2015"	"Male"	"M"	10	5739	Unreliable	0.0682%
+	"Jefferson County, AL"	"01073"	"25-29 years"	"25-29"	"2008"	"2008"	"Male"	"M"	11	23798	Unreliable	0.0751%
+	"Jefferson County, AL"	"01073"	"25-29 years"	"25-29"	"2010"	"2010"	"Male"	"M"	11	23224	Unreliable	0.0751%
+	"Jefferson County, AL"	"01073"	"25-29 years"	"25-29"	"2011"	"2011"	"Male"	"M"	12	23121	Unreliable	0.0819%
+	"Jefferson County, AL"	"01073"	"25-29 years"	"25-29"	"2015"	"2015"	"Male"	"M"	12	23150	Unreliable	0.0819%
+	"Jefferson County, AL"	"01073"	"25-29 years"	"25-29"	"2017"	"2017"	"Male"	"M"	10	23889	Unreliable	0.0682%
+	"Jefferson County, AL"	"01073"	"25-29 years"	"25-29"	"2020 "	"2020"	"Male"	"M"	10	23394	Unreliable	0.0682%
+	"Jefferson County, AL"	"01073"	"30-34 years"	"30-34"	"2008"	"2008"	"Male"	"M"	16	20390	Unreliable	0.1092%
+	"Jefferson County, AL"	"01073"	"30-34 years"	"30-34"	"2018"	"2018"	"Male"	"M"	15	21677	Unreliable	0.1024%
+	"Jefferson County, AL"	"01073"	"30-34 years"	"30-34"	"2019"	"2019"	"Male"	"M"	11	22270	Unreliable	0.0751%
+	"Jefferson County, AL"	"01073"	"30-34 years"	"30-34"	"2020 "	"2020"	"Male"	"M"	11	22597	Unreliable	0.0751%
+	"Jefferson County, AL"	"01073"	"35-39 years"	"35-39"	"2001"	"2001"	"Male"	"M"	10	22988	Unreliable	0.0682%
+	"Jefferson County, AL"	"01073"	"35-39 years"	"35-39"	"2020 "	"2020"	"Male"	"M"	11	20335	Unreliable	0.0751%
+	"Jefferson County, AL"	"01073"	"40-44 years"	"40-44"	"1999"	"1999"	"Male"	"M"	10	25170	Unreliable	0.0682%
+	"Jefferson County, AL"	"01073"	"40-44 years"	"40-44"	"2012"	"2012"	"Male"	"M"	12	20267	Unreliable	0.0819%
+	"Jefferson County, AL"	"01073"	"50-54 years"	"50-54"	"2006"	"2006"	"Male"	"M"	11	22687	Unreliable	0.0751%
+	"Jefferson County, AL"	"01073"	"50-54 years"	"50-54"	"2012"	"2012"	"Male"	"M"	10	22258	Unreliable	0.0682%
+	"Jefferson County, AL"	"01073"	"50-54 years"	"50-54"	"2017"	"2017"	"Male"	"M"	10	19451	Unreliable	0.0682%
+	"Jefferson County, AL"	"01073"	"55-59 years"	"55-59"	"2009"	"2009"	"Male"	"M"	11	20512	Unreliable	0.0751%
+	"Jefferson County, AL"	"01073"	"55-59 years"	"55-59"	"2014"	"2014"	"Male"	"M"	10	21492	Unreliable	0.0682%
+	"Madison County, AL"	"01089"	"55-59 years"	"55-59"	"2013"	"2013"	"Male"	"M"	12	11835	Unreliable	0.0819%
+	"Madison County, AL"	"01089"	"65-69 years"	"65-69"	"2016"	"2016"	"Male"	"M"	10	8066	Unreliable	0.0682%
+	"Mobile County, AL"	"01097"	"35-39 years"	"35-39"	"2017"	"2017"	"Male"	"M"	10	12165	Unreliable	0.0682%
+"---"
+"Dataset: Multiple Cause of Death, 1999-2020"
+"Query Parameters:"
+"MCD - ICD-10 Codes: U03.0 (Terrorism involving explosions and fragments); U03.9 (Terrorism by other and unspecified means);"
+"X60-X84 (Intentional self-harm); Y87.0 (Sequelae of intentional self-harm); Y87.1 (Sequelae of assault); Y87.2 (Sequelae of"
+"events of undetermined intent)"
+"States: Alabama (01)"
+"Group By: County; Five-Year Age Groups; Year; Gender"
+"Show Totals: Disabled"
+"Show Zero Values: Disabled"
+"Show Suppressed: False"
+"Calculate Rates Per: 100,000"
+"Rate Options: Default intercensal populations for years 2001-2009 (except Infant Age Groups)"
+"---"
+"Help: See http://wonder.cdc.gov/wonder/help/mcd.html for more information."
+"---"
+"Query Date: Apr 29, 2024 3:21:29 AM"
+"---"
+"Suggested Citation: Centers for Disease Control and Prevention, National Center for Health Statistics. National Vital Statistics"
+"System, Mortality 1999-2020 on CDC WONDER Online Database, released in 2021. Data are from the Multiple Cause of Death Files,"
+"1999-2020, as compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative"
+"Program. Accessed at http://wonder.cdc.gov/mcd-icd10.html on Apr 29, 2024 3:21:29 AM"
+"---"
+Messages:
+"1. The full results are too long to be displayed. Due to suppression constraints rows that are zero, suppressed or a total will"
+"not be available."
+"---"
+Caveats:
+"1. Population and rates are labeled 'Not Applicable' when they include a subset of ages 85-100+ because populations are not"
+"available for those ages. More information: http://wonder.cdc.gov/wonder/help/mcd.html#Ages 85-100."
+"2. As of April 3, 2017, the underlying cause of death has been revised for 125 deaths in 2014. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd.html#2014-Revision."
+"3. Death rates are flagged as Unreliable when the rate is calculated with a numerator of 20 or less. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd.html#Unreliable."
+"4. Deaths of persons with Age ""Not Stated"" are included in ""All"" counts and rates, but are not distributed among age groups,"
+"so are not included in age-specific counts, age-specific rates or in any age-adjusted rates. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd.html#Not Stated."
+"5. The population figures for year 2020 are bridged-race estimates of the July 1 resident population, from the Vintage 2020"
+"postcensal series released by NCHS on September 22, 2021. The population figures for year 2019 are bridged-race estimates of the"
+"July 1 resident population, from the Vintage 2019 postcensal series released by NCHS on July 9, 2020. The population figures for"
+"year 2018 are bridged-race estimates of the July 1 resident population, from the Vintage 2018 postcensal series released by NCHS"
+"on June 25, 2019. The population figures for year 2017 are bridged-race estimates of the July 1 resident population, from the"
+"Vintage 2017 postcensal series released by NCHS on June 27, 2018. The population figures for year 2016 are bridged-race"
+"estimates of the July 1 resident population, from the Vintage 2016 postcensal series released by NCHS on June 26, 2017. The"
+"population figures for year 2015 are bridged-race estimates of the July 1 resident population, from the Vintage 2015 postcensal"
+"series released by NCHS on June 28, 2016. The population figures for year 2014 are bridged-race estimates of the July 1 resident"
+"population, from the Vintage 2014 postcensal series released by NCHS on June 30, 2015. The population figures for year 2013 are"
+"bridged-race estimates of the July 1 resident population, from the Vintage 2013 postcensal series released by NCHS on June 26,"
+"2014. The population figures for year 2012 are bridged-race estimates of the July 1 resident population, from the Vintage 2012"
+"postcensal series released by NCHS on June 13, 2013. Population figures for 2011 are bridged-race estimates of the July 1"
+"resident population, from the county-level postcensal Vintage 2011 series released by NCHS on July 18, 2012. Population figures"
+"for 2010 are April 1 Census counts. The population figures for years 2001 - 2009, are bridged-race estimates of the July 1"
+"resident population, from the revised intercensal county-level 2000 - 2009 series released by NCHS on October 26, 2012."
+"Population figures for 2000 are April 1 Census counts. Population figures for 1999 are from the 1990-1999 intercensal series of"
+"July 1 estimates. Population figures for Infant Age Groups are the number of live births. <br/><b>Note:</b> Rates and population"
+"figures for years 2001 - 2009 differ slightly from previously published reports, due to use of the population estimates which"
+"were available at the time of release."
+"6. The population figures used in the calculation of death rates for the age group 'under 1 year' are the estimates of the"
+"resident population that is under one year of age. More information: http://wonder.cdc.gov/wonder/help/mcd.html#Age Group."
+"7. Changes to cause of death classification affect reporting trends. More information:"
+"http://wonder.cdc.gov/wonder/help/mcd.html#ICD-10 Changes."

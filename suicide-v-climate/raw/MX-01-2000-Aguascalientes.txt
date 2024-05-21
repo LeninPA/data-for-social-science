@@ -1,0 +1,44 @@
+Defunciones registradas (mortalidad general)
+	Año de ocurrencia : 2000
+	Año de registro : 2000
+	
+
+Consulta de: Defunciones generales   Por: Ent y mun de registro y Edad   Según: Sexo y Causas detalladas CIE
+ 	 	 	 Total	 Hombre	 Mujer
+ 	 	 	 Lesiones autoinfligidas intencionalmente (X60-X84)	 Lesiones autoinfligidas intencionalmente (X60-X84)	 Lesiones autoinfligidas intencionalmente (X60-X84)
+ 01	 Aguascalientes	 Total	 32	 24	 8
+ 01	 Aguascalientes	 10-14 años	 1	 1	 
+ 01	 Aguascalientes	 15-19 años	 7	 5	 2
+ 01	 Aguascalientes	 20-24 años	 5	 3	 2
+ 01	 Aguascalientes	 25-29 años	 4	 3	 1
+ 01	 Aguascalientes	 30-34 años	 5	 4	 1
+ 01	 Aguascalientes	 35-39 años	 2	 2	 
+ 01	 Aguascalientes	 40-44 años	 2	 2	 
+ 01	 Aguascalientes	 45-49 años	 3	 1	 2
+ 01	 Aguascalientes	 70-74 años	 2	 2	 
+ 01	 Aguascalientes	 75-79 años	 1	 1	 
+ 01 001	 Aguascalientes	 Total	 25	 19	 6
+ 01 001	 Aguascalientes	 10-14 años	 1	 1	 
+ 01 001	 Aguascalientes	 15-19 años	 5	 4	 1
+ 01 001	 Aguascalientes	 20-24 años	 4	 2	 2
+ 01 001	 Aguascalientes	 25-29 años	 3	 2	 1
+ 01 001	 Aguascalientes	 30-34 años	 3	 3	 
+ 01 001	 Aguascalientes	 35-39 años	 2	 2	 
+ 01 001	 Aguascalientes	 40-44 años	 2	 2	 
+ 01 001	 Aguascalientes	 45-49 años	 3	 1	 2
+ 01 001	 Aguascalientes	 70-74 años	 1	 1	 
+ 01 001	 Aguascalientes	 75-79 años	 1	 1	 
+ 01 002	 Asientos	 Total	 1	 	 1
+ 01 002	 Asientos	 15-19 años	 1	 	 1
+ 01 003	 Calvillo	 Total	 1	 1	 
+ 01 003	 Calvillo	 70-74 años	 1	 1	 
+ 01 005	 Jesús María	 Total	 4	 3	 1
+ 01 005	 Jesús María	 20-24 años	 1	 1	 
+ 01 005	 Jesús María	 25-29 años	 1	 1	 
+ 01 005	 Jesús María	 30-34 años	 2	 1	 1
+ 01 009	 Tepezalá	 Total	 1	 1	 
+ 01 009	 Tepezalá	 15-19 años	 1	 1	 
+
+
+FUENTE: INEGI. Estadísticas de mortalidad.
+
