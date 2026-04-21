@@ -1,5 +1,6 @@
 # Funciones anteriores
 source("./bootstrap/functions.R")
+
   
 # Carga csv de datos de México a memoria
 data_mex <- read.csv('./bootstrap/inputs/SuicideData_Mexico.csv')
@@ -22,7 +23,7 @@ cc <- unique(data_mex$id)
 # Ejecución bootstraping
 
 s <- system.time({
-  out <- mclapply(1:1000, function(i) {
+  out <- mclapply(1:100, function(i) {
     samp <- data.frame(id=sample(cc,length(cc),replace=T))
     subdata <- inner_join(data_mex,samp)
     summary(felm(rate_adj ~ tmean + prec | id + statemonth + state_year, weights = subdata$popw, data = subdata))$coefficients[c("tmean"),"Estimate"]
@@ -33,7 +34,8 @@ s
 out <- unlist(out)
 # Guarda resultados en CSV
 df <- data.frame(x = 1:length(out), est = out)
-write_csv(df,path="./bootstrap/inputs/BootstrapMainModel_mex.csv")
+bootstrap_PATH <- "./bootstrap/inputs/BootstrapMainModel_mex.csv"
+write_csv(df,path=bootstrap_PATH)
 
 # ------------------------------
 # Inicio graficación
@@ -62,7 +64,7 @@ modata_mex8 <- felm(rate_adj ~ ns(tmean,df=8) + prec | id + statemonth + state_y
 
 ### Graficación figuras ###
   
-pdf(file="./outputs/Figura1.pdf",height=8,width=10)
+pdf(file="./bootstrap/outputs/Figura1.pdf",height=8,width=10)
       par(mfrow=c(1,2))
   
   
@@ -74,7 +76,7 @@ nn <- dim(yym)[2]
 br <- weighted.mean(data_mex$rate_adj,data_mex$popw,na.rm=T)
 
 #read-in bootstrapped runs from above to get CI
-boot <- read.csv("inputs/bootstrap_runs/BootstrapMainModel_mex.csv")
+boot <- read.csv(bootstrap_PATH)
   est <- as.matrix(boot$est)%*%matrix(xx,ncol=length(xx))
   est <- est - est[,which(xx==20)] 
   ci <- apply(est,2,function(x) quantile(x,probs=c(0.025,0.975)))/br*100
