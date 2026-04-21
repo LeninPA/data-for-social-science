@@ -25,8 +25,111 @@ library(forecast)
 library(ggplot2)
 ```
 
+Cargamos los datos con `Pob_mitad` las proyecciones a mitad de año y `TEM` el dataframe de las defunciones
+
+```{r}
+Pob_mitad   <- read_excel("data/0_Pob_Mitad_1950_2070.xlsx")
+Defunciones <- read_excel("data/1_Defunciones_1950_2070.xlsx")
+TEM <- Defunciones
+```
+
 # Tasas específicas de mortalidad
 
+Calculamos las tasas específicas de mortalidad por edad, sexo y año
+
+```{r}
+TEM$POBLACION <- Pob_mitad$POBLACION
+TEM$TEM       <- TEM$DEFUNCIONES/TEM$POBLACION
+```
+
+Nos interesa realizar el cálculo a nivel nacional así que retiraremos los datos 
+estatales
+
+```{r}
+TEM <- TEM %>% filter(ENTIDAD == "República Mexicana")
+TEM <- TEM %>% select(-ENTIDAD)
+```
+
+Para el cálculo de los datos de proyección (2020-2070), requerimos de un lugar 
+donde almacenarlo que llamaremos `Base_CD_TEM`
+
+```{r}
+Base_CD_TEM <- matrix(NA, 220, 70)
+colnames(Base_CD_TEM) = seq(1950,2019)
+```
+
+Aquí almacenaremos las TEM extraídas con anterioridad con base en el año y sexo
+
+```{r}
+for (i in 1950:2019) 
+{
+  for (j in 1:220) 
+  {
+    if(j <= 110) 
+    { # Hombres
+      valor <- TEM %>%
+        filter(SEXO == "Hombres", AÑO == i, EDAD == (j-1)) %>%
+        pull(TEM) # Extraer el valor
+    } else { # Mujeres
+      valor <- TEM %>%
+        filter(SEXO == "Mujeres", AÑO == i, EDAD == (j-111)) %>%
+        pull(TEM) # Extraer el valor
+    }
+    # Asignamos el valor a la matriz
+    Base_CD_TEM[j, i-1949] = ifelse(length(valor) > 0, valor, NA)
+  }
+}
+```
+
+Una vez realizado este trabajo, obligamos a la transmutación alquímica de la 
+matriz a un dataframe con el mismo nombre
+
+```{r}
+Base_CD_TEM <- as.data.frame.matrix(Base_CD_TEM) 
+```
+
+Sin embargo, este reetiquetado requiere de cierto andamiaje para funcionar 
+apropiadamente, particularmente con respecto a los índices del dataframe.
+Definimos entonces a los vectores auxiliares
+
+```{r}
+age   <-    0:109
+years <- 1950:2019
+sex   <- rep(c("Hombre, Mujer"), each = 110)
+```
+
+Así, definimos al dataframe en formato largo con las tasas específicas de 
+mortalidad `df` 
+
+```{r}
+df <- as.data.frame(Base_CD_TEM)
+colnames(df) <- as.character(years)
+df$Edad <- rep(age, 2)
+df$Sexo <- sex
+```
+
+Ahora hacemos compatible nuestro dataframe con ggplot convirtiéndolo a un
+formato long
+
+```{r}
+df_largo <- df %>%
+  pivot_longer(cols = starts_with("19") | starts_with("20"),
+               names_to = "Año",
+               values_to = "Tasa") %>%
+  mutate(Año = as.integer(Año))
+```
+
+Graficando
+```{r}
+ggplot(df_largo, aes(x = Edad, y = Tasa, color = Sexo)) +
+  geom_line() +
+  facet_wrap(~Año, ncol = 7) +
+  theme_minimal() +
+  labs(title = "Tasas específicas de mortalidad por edad, sexo y año",
+       x = "Edad",
+       y = "Tasa de mortalidad",
+       color = "Sexo")
+```
 
 
 # Tablas de vida
