@@ -131,6 +131,124 @@ ggplot(df_largo, aes(x = Edad, y = Tasa, color = Sexo)) +
        color = "Sexo")
 ```
 
+## Corrigiendo las Tasas Específicas de Mortalidad
+
+Para llevar a cabo las correcciones deseadas se vuelve necesario tener a la mano
+una tabla con la esperanza de vida `ev` y la tabla modelo de las Naciones Unidas
+`tabla_modelo`.
+
+```{r}
+ev           <- read_excel("data/EV_1950_2019.xlsx")
+tabla_modelo <- read_excel("data/MLT_UN2011_130_1y_complete.xlsx")
+```
+
+De aquí tomamos la esperanza de vida de cada año, filtramos la tabla modelo por
+el patrón *Latin*, el sexo, y la esperanza de vida `e0`. Posteriormente filtramos
+las edades extremas (85+) e imputamos los valores correspondientes
+```{r}
+imputar_mx_edades_extremas <- function(tabla_modelo, esperanza_vida, mxt, años = 1950:2019) {
+  for (año in años) {
+    for (sexo in c("Male", "Female")) {
+      
+      # Extraer esperanza de vida como entero
+      sexo_spa <- if( sexo == "Male" ) "Hombres" else "Mujeres"
+      e0 <- as.numeric(ev[which(ev$año == año & ev$sexo == sexo_spa), ]$EV)
+      
+      # Filtrar tabla modelo por patrón Latin, sexo y E0 exacto
+      tabla_filtrada <- tabla_modelo[
+        tabla_modelo$Family == "Latin" &
+          tabla_modelo$Sex == sexo &
+          tabla_modelo$E0 == e0, ]
+      
+      # Extraer mx1 para edades 90-109
+      edades_extremas <- 85:109
+      mx_vals <- tabla_filtrada[tabla_filtrada$age %in% edades_extremas, "mx1"]
+      
+      # Determinar filas en mxt
+      filas_mxt <- if (sexo == "Male") edades_extremas + 1 else edades_extremas + 111
+      
+      # 6. Determinamos columna en mxt
+      col_mxt <- which(colnames(mxt) == año)
+      
+      # 7. Imputar valores
+      mxt[filas_mxt, col_mxt] <- mx_vals
+    }
+  }
+  return(mxt)
+}
+```
+
+Aplicando este método a nuestros datos,
+
+```{r}
+ev[,3] = round(ev[,3])
+mxt = imputar_mx_edades_extremas(tabla_modelo, ev, Base_CD_TEM, años = 1950:2019)
+mxt = as.data.frame.matrix(mxt)
+```
+
+Realizando el mismo andamiaje para las etiquetas del dataframe
+
+```{r}
+sex_eng <- rep(c("Male", "Female"), each = 110)
+# Convertir mxt a data frame largo
+df <- as.data.frame(mxt)
+colnames(df) <- as.character(years)
+df$Edad <- rep(age, 2)
+df$Sexo <- sex_eng
+
+# Reorganizar en formato largo
+df_largo <- df %>%
+  pivot_longer(cols = starts_with("19") | starts_with("20"),
+               names_to = "Año",
+               values_to = "Tasa") %>%
+  mutate(Año = as.integer(Año))
+
+# Filtrar para hombres y todas las edades
+df_hombres <- df_largo %>%
+  filter(Sexo == "Male", Año >= 1950, Año <= 2019)
+df_mujeres <- df_largo %>%
+  filter(Sexo == "Female", Año >= 1950, Año <= 2019)
+```
+
+Graficando
+
+```{r}
+ggplot(df_hombres, aes(x = Edad, y = log(Tasa), group = Año, color = Año)) +
+  geom_line(alpha = 0.5, linewidth = 0.8) +
+  scale_color_viridis_c(option = "plasma", direction = -1) +
+  theme_minimal(base_size = 12) +
+  labs(title = "Evolución de tasas de mortalidad corregidas (Hombres, edades 0–109)",
+       x = "Edad",
+       y = "Logaritmo de la tasa de mortalidad",
+       color = "Año") +
+  theme(legend.position = "right",
+        strip.text = element_text(size = 10),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))+
+  geom_vline(xintercept = 85, linetype="dotted")
+```
+```{r}
+ggplot(df_mujeres, aes(x = Edad, y = log(Tasa), group = Año, color = Año)) +
+  geom_line(alpha = 0.5, linewidth = 0.8) +
+  scale_color_viridis_c(option = "plasma", direction = -1) +
+  theme_minimal(base_size = 12) +
+  labs(title = "Evolución de tasas de mortalidad corregidas (Mujeres, edades 0–109)",
+       x = "Edad",
+       y = "Logaritmo de la tasa de mortalidad",
+       color = "Año") +
+  theme(legend.position = "right",
+        strip.text = element_text(size = 10),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))+
+  geom_vline(xintercept = 85, linetype="dotted")
+```
+
+
+## Usando SVD para analizar las TEM
+
+## Interpretación
+
+## Proyección de componentes kt
+
+## Tasa de mortalidad
 
 # Tablas de vida
 
