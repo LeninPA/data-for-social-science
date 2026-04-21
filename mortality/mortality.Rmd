@@ -1,0 +1,48 @@
+---
+title: "Laboratorio 01 - Mortalidad"
+author: "Lenin Pavón"
+date: '2026-04-21'
+output: pdf_document
+---
+
+# Introducción
+
+Para poder realizar nuestro código es menester cargar las siguientes bibliotecas. De particular interés es `readxl` que nos permitirá leer directamente los archivos en xlsx.
+
+- readxl
+- dplyr
+- tidyverse
+- forecast
+- ggplot2
+
+```{r setup, include=FALSE}
+# install.packages(c("readxl", "forecast", "dplyr"))
+rm(list=ls(all=TRUE))
+library(readxl)
+library(dplyr)
+library(tidyverse)
+library(forecast)
+library(ggplot2)
+```
+
+# Tasas específicas de mortalidad
+
+
+
+# Tablas de vida
+
+Código placeholder
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
