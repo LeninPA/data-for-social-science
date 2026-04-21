@@ -26,6 +26,8 @@ library(ggplot2)
 library(ggrepel)
 ```
 
+Antes de continuar, quisiera comentar que el proceso de creación del pdf masacró de manera inexorable la belleza de algunas gráficas. Le recomiendo a la lectora consultar cada gráfica accediendo al directorio `plots`. Están (en su mayoría) en el mismo orden en el que se presentan en el reporte de laboratorio.
+
 Cargamos los datos con `Pob_mitad` las proyecciones a mitad de año y `TEM` el dataframe de las defunciones
 
 ```{r}
@@ -624,7 +626,7 @@ ggplot(df_hombres, aes(x = edad, y = mxt, group = año, color = año)) +
   geom_line(alpha = 0.5, linewidth = 0.8) +
   scale_color_viridis_c(option = "plasma", direction = -1) +
   theme_minimal(base_size = 12) +
-  labs(title = "Evolución de tasas de mortalidad imputadas (Hombres, edades 0–109)",
+  labs(title = "Evolución de tasas de mortalidad imputadas (Hombres, 0 a 109)",
        x = "Edad",
        y = "Tasa de mortalidad",
        color = "Año") +
@@ -645,7 +647,7 @@ ggplot(df_mujeres, aes(x = edad, y = mxt, group = año, color = año)) +
   geom_line(alpha = 0.5, linewidth = 0.8) +
   scale_color_viridis_c(option = "plasma", direction = -1) +
   theme_minimal(base_size = 12) +
-  labs(title = "Evolución de tasas de mortalidad (Mujeres, edades 0–109)",
+  labs(title = "Evolución de tasas de mortalidad (Mujeres, edades 0 a 109)",
        x = "Edad",
        y = "Tasa de mortalidad",
        color = "Año") +
@@ -662,47 +664,39 @@ ggplot(df_mujeres, aes(x = edad, y = mxt, group = año, color = año)) +
 Definiremos una función de la tabla de vida que tendrá un radix de $l_0=10^5$
 
 ```{r}
-tabla_vida <- function(df, radix = 100000, n = 1) {
-  
+tabla_vida <- function(df, radix = 100000, n = 1) 
+{
   calc_tabla <- function(subdf) {
-    
     subdf <- subdf %>% arrange(edad)
     mx <- subdf$mxt
     w <- length(mx)
-    
     # n_ax
     nax <- rep(n/2, w)
-    
     # qx
     qx <- (n * mx) / (1 + (n - nax) * mx)
     qx[w] <- 1
-    
     # px
     px <- 1 - qx
-    
     # lx
     lx <- numeric(w)
     lx[1] <- radix
-    for (i in 1:(w - 1)) {
+    for (i in 1:(w - 1)) 
+    {
       lx[i + 1] <- lx[i] * px[i]
     }
-    
     # dx
     dx <- lx * qx
-    
     # Lx
     Lx <- numeric(w)
-    for (i in 1:(w - 1)) {
+    for (i in 1:(w - 1)) 
+    {
       Lx[i] <- n * lx[i + 1] + nax[i] * dx[i]
     }
     Lx[w] <- nax[w] * dx[w]
-    
     # Tx
     Tx <- rev(cumsum(rev(Lx)))
-    
     # ex
     ex <- Tx / lx
-    
     subdf %>%
       mutate(
         qx = qx,
@@ -714,7 +708,6 @@ tabla_vida <- function(df, radix = 100000, n = 1) {
         ex = ex
       )
   }
-  
   df %>%
     group_by(sexo, año, tipo) %>%
     group_modify(~ calc_tabla(.x)) %>%
