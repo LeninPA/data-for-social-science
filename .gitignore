@@ -1,5 +1,6 @@
 *.zip
 ~$1_bilogito.xlsx
+~$3_final_projection.xlsx
 # History files
 .Rhistory
 .Rapp.history
