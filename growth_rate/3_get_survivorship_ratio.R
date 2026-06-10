@@ -29,3 +29,16 @@ m <- lifetable %>%
 
 write.csv(h, "data/survivorship_rates_male.csv")
 write.csv(m, "data/survivorship_rates_female.csv")
+
+s0 <- lifetable %>% 
+  select(año, edad, sexo, lx, Lx) %>% 
+  filter(edad == 0) %>% 
+  mutate(pb = Lx / lx) %>%
+  select(año, sexo, pb) %>%
+  pivot_wider(
+    names_from = año,
+    values_from = pb
+  ) %>%
+  drop_na()
+
+write.csv(s0, "data/survivorship_rates_at_birth.csv")
