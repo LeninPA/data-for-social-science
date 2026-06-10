@@ -318,4 +318,5 @@ relaciones_sobrevivencia <- function(df_tidy, n = 1) {
 
 df_surv <- relaciones_sobrevivencia(resultado)
 
-write.csv(pred_bilogito, "data/lifetable-1950-2070.csv")
+write.csv(df_surv, "data/lifetable-1950-2070.csv")
+
