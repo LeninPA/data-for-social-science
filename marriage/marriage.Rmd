@@ -1,5 +1,5 @@
 ---
-title: "marriage"
+title: "Pipeline de análisis de matrimonio"
 author: "LeninP"
 date: "`r Sys.Date()`"
 output: html_document
@@ -9,22 +9,133 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+Vamos a utilizar la biblioteca de tidyverse para nuestro
+procesamiento de datos
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r}
+library(tidyverse)
+```
+```{r}
+packageVersion("tidyverse")
 ```
 
-## Including Plots
+# Población
+Empezamos importando las estimaciones de población a mitad de año de CONAPO
 
-You can also embed plots, for example:
+```{r}
+pob <- read_csv("data/00_Pob_Mitad_1950_2070.csv")
+```
+# Número de matrimonios
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+Convertimos el dataframe a formato tidy
+
+```{r}
+mar_state <- read_csv("data/01_marriages_by_state.csv") %>%
+  pivot_longer(2:33, names_to="year", values_to = "marriages") %>%
+  rename(entidad = Entidad)
+```
+## Número de matrimonios en México
+
+```{r}
+mar_state %>%
+  filter(entidad != "Estados Unidos Mexicanos") %>%
+  # filter(year >= 2020)%>%
+  ggplot(aes(x = year, y = marriages, group = entidad, color = entidad)) +
+  geom_line(linewidth = 0.8, alpha = 0.7) +
+  labs(
+    title = "Matrimonios por año y entidad",
+    x = "Año",
+    y = "Matrimonios",
+    color = "Entidad"
+  ) +
+  theme_minimal()
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+mar_state %>%
+  filter(entidad != "Estados Unidos Mexicanos") %>%
+  ggplot(aes(x = year, y = marriages, group = entidad)) +
+  geom_line() +
+  facet_wrap(~ entidad, ncol = 8) +
+  labs(
+    title = "Matrimonios por año (1993-2024)",
+    x = "Año",
+    y = "Matrimonios"
+  ) +
+  scale_x_discrete(breaks = c(2000,2010,2020)) +
+  theme_minimal()
+```
+
+# Matrimonios por cada mil habitantes
+
+```{r}
+pob_tot <- pob %>%
+  group_by(ANIO) %>%
+  summarise(
+    total_pob = sum(POBLACION)
+  ) %>%
+  rename(year = ANIO)
+```
+
+
+```{r}
+mar_state %>%
+  mutate(year = as.numeric(year)) %>%
+  filter(entidad == "Estados Unidos Mexicanos") %>%
+  inner_join(pob_tot) %>%
+  mutate(marriage_rate = marriages / total_pob * 1000) %>%
+  ggplot(aes(x = year, y = marriage_rate)) +
+    geom_line() +
+    geom_point() +
+    labs(
+      title = "Tasa de Matrimonios por año (1993-2024)",
+      x = "Año",
+      y = "Tasa de Matrimonios"
+    ) +
+  theme_minimal()
+```
+
+# Matrimonios del mismo sexo
+
+```{r}
+mar_by_sex <- read_csv("data/04_marriage_by_sex.csv") %>%
+  select(1:5)
+```
+Seleccionamos los matrimonios entre personas del mismo sexo
+```{r}
+mat_men <- mar_by_sex %>% 
+  filter(Entidad != "Total") %>%
+  filter(Sexo == "Hombre") %>%
+  select(Entidad,Hombre)
+mat_wom <- mar_by_sex %>% 
+  filter(Entidad != "Total") %>%
+  filter(Sexo == "Mujer") %>%
+  select(Entidad,Mujer)
+mat_homo <- inner_join(mat_men, mat_wom)
+```
+Graficando
+```{r}
+mat_homo %>%
+  pivot_longer(
+    cols = c(Hombre, Mujer),
+    names_to = "Sexo",
+    values_to = "Matrimonios"
+  ) %>%
+  ggplot(aes(
+    x = reorder(Entidad, Matrimonios, sum),
+    y = Matrimonios,
+    fill = Sexo
+  )) +
+  geom_col() +
+  coord_flip() +
+  labs(
+    title= "Matrimonios entre personas del mismo sexo\npor entidad federativa (2024)",
+    x = "Entidad",
+    y = "Número de matrimonios",
+    fill = "Sexo"
+  ) +
+  theme_minimal()
+```
+
+
